@@ -9,6 +9,7 @@ $(document).ready(function () {
     const name = Object.keys(amenitiesLst);
     $('.amenities h4').text(name.sort().join(', '));
   });
+
   $.get('http://0.0.0.0:5001/api/v1/status/', function (data, status) {
     if (status === 'OK'){
       $('DIV#api_status').addClass('available');
@@ -46,4 +47,15 @@ $(document).ready(function () {
       console.log(error);
     }
   });
+
+  $(button).on('click', function () {
+    const amenities = Object.values(amenitiesLst);
+    $.ajax({
+      url: URL,
+      type: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      data: JSON.stringify({
+        amenities: amenities
+      }),
+    })});
 });
