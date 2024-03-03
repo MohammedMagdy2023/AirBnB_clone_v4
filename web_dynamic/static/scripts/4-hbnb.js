@@ -1,3 +1,4 @@
+import $ from 'jquery';
 $(document).ready(function () {
   const amenitiesLst = {};
   $('.amenities .popover input').change(function () {
@@ -48,7 +49,7 @@ $(document).ready(function () {
     }
   });
 
-  $(button).on('click', function () {
+  $(document).on('click', '.button', function () {
     const amenities = Object.values(amenitiesLst);
     $.ajax({
       url: URL,
@@ -57,5 +58,6 @@ $(document).ready(function () {
       data: JSON.stringify({
         amenities: amenities
       }),
-    })});
+    });
+  });
 });
